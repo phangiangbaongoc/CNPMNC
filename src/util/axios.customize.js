@@ -6,6 +6,7 @@ const instance = axios.create({
 
 // Alter defaults after instance has been created
 // Add a request interceptor
+// axios.interceptors.request.use
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
