@@ -1,28 +1,30 @@
 import React from "react";
 import { Button, Form, Input, notification } from "antd";
-import { createUserApi } from "../util/api";
+import { createStaffApi } from "../util/api";
 import { useNavigate } from "react-router-dom";
-
-const RegisterPage = () => {
+const CreateWare = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
-    const { name, email, password } = values;
-    const res = await createUserApi(name, email, password);
-
+    const { name, category, quantity, daystart, dayend } = values;
+    const res = await createStaffApi(
+      name,
+      category,
+      quantity,
+      daystart,
+      dayend
+    );
     if (res) {
       notification.success({
-        message: "CREATE USER",
+        message: "CREATE WARE",
         description: "Success",
       });
-      navigate("/login");
+      navigate("/listware");
     } else {
       notification.error({
-        message: "CREATE USER",
+        message: "CREATE WARE",
         description: "error",
       });
     }
-
-    // console.log(">> Success:", res);
   };
   return (
     <div style={{ margin: 50 }}>
@@ -37,35 +39,13 @@ const RegisterPage = () => {
         style={{
           maxWidth: 600,
         }}
+        initialValues={{
+          remember: true,
+        }}
         onFinish={onFinish}
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Please input your email!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
         <Form.Item
           label="Name"
           name="name"
@@ -73,6 +53,54 @@ const RegisterPage = () => {
             {
               required: true,
               message: "Please input your name!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="category"
+          rules={[
+            {
+              required: true,
+              message: "Please input your category!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Quantity"
+          name="quantity"
+          rules={[
+            {
+              required: true,
+              message: "Please input your quantity!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="DayStart"
+          name="daystart"
+          rules={[
+            {
+              required: true,
+              message: "Please input your daystart!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="DayEnd"
+          name="dayend"
+          rules={[
+            {
+              required: true,
+              message: "Please input your dayend!",
             },
           ]}
         >
@@ -88,4 +116,4 @@ const RegisterPage = () => {
     </div>
   );
 };
-export default RegisterPage;
+export default CreateWare;

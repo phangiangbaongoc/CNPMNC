@@ -1,0 +1,59 @@
+/* Background image for the entire page */
+.login-container {
+  background-image: url("../Image/Login.jpg"); /* Replace with the correct path */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the login box */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-box {
+  background-color: rgba(139, 69, 19, 0.8); /* Màu nâu nhạt với độ mờ */
+  padding: 40px; /* Tăng padding để mở rộng diện tích phần đăng nhập */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 600px; /* Thiết lập chiều rộng cho login box */
+}
+
+.login-box h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  display: flex; /* Sử dụng flexbox để căn chỉnh label và input */
+  flex-direction: row; /* Căn chỉnh theo hàng */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.input-group label {
+  color: white;
+  font-size: 14px;
+  margin-right: 10px; /* Khoảng cách giữa label và input */
+  flex: 1; /* Label chiếm không gian cần thiết */
+  text-align: left; /* Căn chỉnh text bên trái */
+}
+
+.input-group input {
+  width: calc(
+    100% - 10px
+  ); /* Tính toán chiều rộng input để có khoảng cách với border */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}

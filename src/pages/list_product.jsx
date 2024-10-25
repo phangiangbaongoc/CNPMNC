@@ -1,13 +1,14 @@
 import { Table, Button } from "antd";
 import { useEffect, useState } from "react";
-import { getUserApi } from "../util/api";
+import { getProductApi } from "../util/api";
 import "../components/style/liststaff.css";
-const UserPage = () => {
+const ProductPage = () => {
   // lấy data động
   const [dataSource, setDataSource] = useState([]);
+  // goi UI
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await getUserApi();
+      const res = await getProductApi();
       if (res) {
         setDataSource(res);
       }
@@ -17,20 +18,20 @@ const UserPage = () => {
 
   const columns = [
     {
-      title: "Id",
-      dataIndex: "_id",
-    },
-    {
-      title: "Email",
+      title: "Image",
       dataIndex: "email",
     },
     {
-      title: "Name",
+      title: "Tên sản phẩm",
       dataIndex: "name",
     },
     {
-      title: "Role",
-      dataIndex: "role",
+      title: "Loại",
+      dataIndex: "category",
+    },
+    {
+      title: "Đơn giá",
+      dataIndex: "Price",
     },
     {
       title: "Activity",
@@ -55,4 +56,4 @@ const UserPage = () => {
     </div>
   );
 };
-export default UserPage;
+export default ProductPage;

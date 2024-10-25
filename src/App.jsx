@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import axios from "./util/axios.customize";
 import Header from "./components/layout/header";
 import { Outlet } from "react-router-dom";
+import Footer from "./components/layout/footer";
 function App() {
   useEffect(() => {
     const fetchHelloWorld = async () => {
@@ -17,6 +18,7 @@ function App() {
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }

@@ -1,13 +1,15 @@
-import { Table, Button } from "antd";
+import { Table } from "antd";
 import { useEffect, useState } from "react";
-import { getUserApi } from "../util/api";
+import { getStaffApi } from "../util/api";
+import { Button } from "antd/es/radio";
 import "../components/style/liststaff.css";
-const UserPage = () => {
+const StaffPage = () => {
   // lấy data động
   const [dataSource, setDataSource] = useState([]);
+  // goi UI
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await getUserApi();
+      const res = await getStaffApi();
       if (res) {
         setDataSource(res);
       }
@@ -21,7 +23,7 @@ const UserPage = () => {
       dataIndex: "_id",
     },
     {
-      title: "Email",
+      title: "Image",
       dataIndex: "email",
     },
     {
@@ -29,8 +31,12 @@ const UserPage = () => {
       dataIndex: "name",
     },
     {
-      title: "Role",
-      dataIndex: "role",
+      title: "Phone",
+      dataIndex: "phone",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
     },
     {
       title: "Activity",
@@ -55,4 +61,4 @@ const UserPage = () => {
     </div>
   );
 };
-export default UserPage;
+export default StaffPage;

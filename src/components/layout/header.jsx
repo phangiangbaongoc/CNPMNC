@@ -19,6 +19,21 @@ const Header = () => {
       key: "user",
       icon: <MailOutlined />,
     },
+    {
+      label: <Link to={"/liststaff"}>Staff</Link>,
+      key: "staff",
+      icon: <MailOutlined />,
+    },
+    {
+      label: <Link to={"/listproduct"}>Product</Link>,
+      key: "product",
+      icon: <MailOutlined />,
+    },
+    {
+      label: <Link to={"/listproduct"}>warehouse</Link>,
+      key: "warehouse",
+      icon: <MailOutlined />,
+    },
 
     {
       label: "Welcome hoidanit",

@@ -1,0 +1,23 @@
+.custom-button {
+  background-color: #2f4f4f; /* Màu nền */
+  color: white; /* Màu chữ */
+  font-size: 12px; /* Kích thước chữ nhỏ */
+  padding: 4px 5px; /* Kích thước button */
+  border: none; /* Loại bỏ viền */
+  border-radius: 4px; /* Bo góc */
+  width: 50px;
+  text-align: center; /*căn giữa nội dung (chữ) theo chiều ngang.*/
+  line-height: 1.5;
+}
+
+.custom-button:hover {
+  background-color: #3e6363; /* Màu nền khi hover */
+}
+
+.bg_button {
+  display: flex;
+  gap: 8px; /* Khoảng cách giữa các button */
+}
+.title {
+  background-color: #2f4f4f;
+}

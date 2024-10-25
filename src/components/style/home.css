@@ -1,0 +1,86 @@
+/* Định dạng toàn trang */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Màu nền sáng cho trang */
+}
+
+/* Tiêu đề trang chủ */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Thanh navbar */
+nav {
+  background-color: #343a40; /* Màu nền tối cho navbar */
+  padding: 10px 20px; /* Thêm padding để tạo không gian */
+  display: flex;
+  justify-content: space-between; /* Căn trái cho tên quán và phải cho menu */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Tên quán cà phê */
+.navbar-title {
+  color: white; /* Màu chữ trắng cho tên quán */
+  font-size: 24px; /* Kích thước chữ cho tên quán */
+  font-weight: bold; /* Chữ in đậm */
+}
+
+/* Menu */
+nav ul {
+  list-style-type: none; /* Bỏ dấu đầu dòng */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end; /* Căn phải cho các mục trên navbar */
+}
+
+nav ul li {
+  margin: 0 15px; /* Khoảng cách giữa các mục */
+}
+
+nav ul li a {
+  color: white; /* Màu chữ trắng cho các liên kết */
+  text-decoration: none; /* Bỏ gạch chân */
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Tạo hiệu ứng hover */
+}
+
+nav ul li a:hover {
+  background-color: #495057; /* Đổi màu nền khi hover */
+}
+
+/* Nội dung trang Home */
+.content {
+  padding: 20px;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  color: #555; /* Màu chữ xám nhẹ */
+  margin-top: 20px;
+}
+
+/* Responsive (điều chỉnh trên thiết bị di động) */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column; /* Đặt các phần tử trong navbar theo cột */
+    align-items: flex-start; /* Căn chỉnh các phần tử về bên trái */
+  }
+
+  nav ul {
+    flex-direction: column; /* Hiển thị các mục dạng cột khi trên mobile */
+  }
+
+  nav ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục trên mobile */
+  }
+}

@@ -1,13 +1,14 @@
 import { Table, Button } from "antd";
 import { useEffect, useState } from "react";
-import { getUserApi } from "../util/api";
+import { getWareApi } from "../util/api";
 import "../components/style/liststaff.css";
-const UserPage = () => {
+const ProductPage = () => {
   // lấy data động
   const [dataSource, setDataSource] = useState([]);
+  // goi UI
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await getUserApi();
+      const res = await getWareApi();
       if (res) {
         setDataSource(res);
       }
@@ -21,16 +22,12 @@ const UserPage = () => {
       dataIndex: "_id",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-    },
-    {
       title: "Name",
       dataIndex: "name",
     },
     {
-      title: "Role",
-      dataIndex: "role",
+      title: "Category",
+      dataIndex: "category",
     },
     {
       title: "Activity",
@@ -55,4 +52,4 @@ const UserPage = () => {
     </div>
   );
 };
-export default UserPage;
+export default ProductPage;
