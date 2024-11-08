@@ -1,0 +1,52 @@
+/* liststaff.css */
+
+/* Style the form container */
+.form-container {
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Custom button styling */
+.custom-button {
+  background-color: #4caf50; /* Green background */
+  color: white;
+  border: none;
+  margin-right: 8px;
+}
+
+/* Custom button hover effect */
+.custom-button:hover {
+  background-color: #45a049; /* Darker green */
+  color: white;
+}
+
+/* Center-align the text in header cells */
+.ant-table-thead > tr > th {
+  background-color: #778899 !important;
+  text-align: center;
+}
+
+/* Optional: Style for sorting icons */
+.ant-table-column-sorters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-table-column-sorter-up,
+.ant-table-column-sorter-down {
+  font-size: 12px; /* Adjust icon size if needed */
+  margin-left: 4px;
+}
+.ant-table-column-title {
+  text-align: center;
+}
+.ant-spin-container {
+  width: 80%; /* Adjust width as needed */
+  margin: 0 auto; /* Centers horizontally */
+  display: flex;
+  justify-content: center; /* Centers horizontally within flex */
+  align-items: center; /* Centers vertically within flex */
+  height: 100%; /* Ensure it takes full height of the container */
+}

@@ -1,4 +1,4 @@
-import { Table, Button } from "antd";
+import { Table, Button, notification } from "antd";
 import { useEffect, useState } from "react";
 import { getUserApi } from "../util/api";
 import "../components/style/liststaff.css";
@@ -8,8 +8,13 @@ const UserPage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await getUserApi();
-      if (res) {
+      if (!res?.message) {
         setDataSource(res);
+      } else {
+        notification.error({
+          massage: "Unauthorized",
+          description: res.message,
+        });
       }
     };
     fetchUser();

@@ -15,6 +15,7 @@ module.exports = {
     "react/jsx-no-target-blank": "off",
     "no-unused-vars": "off", // làm các import có khai báo nhung không sử dụng hết báo lỗi
     "no-debugger": "off",
+    "react/prop-types": "off",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
