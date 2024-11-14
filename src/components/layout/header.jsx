@@ -32,7 +32,7 @@ const Header = () => {
                 icon: <MailOutlined />,
               },
               {
-                label: <Link to={"/listproduct"}>warehouse</Link>,
+                label: <Link to={"/list_ware"}>warehouse</Link>,
                 key: "warehouse",
                 icon: <MailOutlined />,
               },
@@ -48,6 +48,11 @@ const Header = () => {
     {
       label: <Link to={"/cart"}>cart</Link>,
       key: "cart",
+      icon: <MailOutlined />,
+    },
+    {
+      label: <Link to={"/list_staff"}>Nhân viên</Link>,
+      key: "staff",
       icon: <MailOutlined />,
     },
     {

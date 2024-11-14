@@ -14,6 +14,15 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Order from "./pages/OrderList/Order.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
+import CreateWare from "./pages/Ware/ware.jsx";
+import WarePage from "./pages/Ware/list_ware.jsx";
+import UpdateProduct from "./pages/Product/productedit.jsx";
+import CreateEmployee from "./components/Staff/CreateEmployee.jsx";
+import StaffPage from "./pages/staff/list_staff.jsx";
+import FoodItem from "./components/FoodItem/FoodItem.jsx";
+import StaffDisplay from "./components/StaffDisplay/StaffDisplay.jsx";
+import StaffItem from "./components/StaffItem/StaffItem.jsx";
+import UpdateEmployee from "./components/Staff/UpdateEmployee.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +52,14 @@ const router = createBrowserRouter([
         path: "order",
         element: <Order />,
       },
+      {
+        path: "list_ware",
+        element: <WarePage />,
+      },
+      {
+        path: "list_staff",
+        element: <StaffPage />,
+      },
     ],
   },
   {
@@ -56,6 +73,30 @@ const router = createBrowserRouter([
   {
     path: "product",
     element: <CreateProduct />,
+  },
+  {
+    path: "ware",
+    element: <CreateWare />,
+  },
+  {
+    path: "product_edit",
+    element: <UpdateProduct />,
+  },
+  {
+    path: "createStaff",
+    element: <CreateEmployee />,
+  },
+  {
+    path: "staffdisplay",
+    element: <StaffDisplay />,
+  },
+  {
+    path: "staffItem",
+    element: <StaffItem />,
+  },
+  {
+    path: "staff_edit",
+    element: <UpdateEmployee />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

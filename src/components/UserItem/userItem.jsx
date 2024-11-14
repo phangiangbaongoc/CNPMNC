@@ -44,7 +44,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <div className="food-item-actions">
             <button
               className="edit-button"
-              onClick={() => navigate("/product_edit")}
+              onClick={() => navigate("/product")}
             >
               Edit
             </button>

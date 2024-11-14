@@ -1,64 +1,61 @@
-import { Table } from "antd";
-import { useEffect, useState } from "react";
+// EmployeeList.jsx
+import React, { useEffect, useState } from "react";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { getStaffApi } from "../../util/api";
-import { Button } from "antd/es/radio";
-import "../components/style/liststaff.css";
+import StaffItem from "../../components/StaffItem/StaffItem";
+import "./list_staff.css";
+
 const StaffPage = () => {
-  // lấy data động
-  const [dataSource, setDataSource] = useState([]);
-  // goi UI
+  const [employees, dataSource] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await getStaffApi();
-      if (res) {
-        setDataSource(res);
+    const fetchStaff = async () => {
+      try {
+        const res = await getStaffApi();
+        if (res && res.data) {
+          console.log(res.data);
+          console.log("pro: " + dataSource);
+        }
+      } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
       }
     };
-    fetchUser();
+    fetchStaff();
   }, []);
 
-  const columns = [
-    {
-      title: "Id",
-      dataIndex: "_id",
-    },
-    {
-      title: "Image",
-      dataIndex: "email",
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-    },
-    {
-      title: "Date",
-      dataIndex: "date",
-    },
-    {
-      title: "Activity",
-      dataIndex: "activity",
-      render: (text, record) => (
-        <div className="bg_button">
-          <Button className="custom-button">Sửa</Button>
-          <Button className="custom-button">Xóa</Button>
-        </div>
-      ),
-    },
-  ];
+  const handleAddEmployee = () => {
+    navigate("/createStaff");
+  };
 
   return (
     <div style={{ padding: 30 }}>
-      <Table
-        bordered
-        dataSource={dataSource}
-        columns={columns}
-        rowKey={"_id"}
-      />
+      <Button
+        type="primary"
+        style={{ marginBottom: 16 }}
+        onClick={handleAddEmployee}
+      >
+        Add Employee
+      </Button>
+      <h2>hi</h2>
+      <div className="employee-display">
+        <div className="employee-display-list">
+          {employees.map((employee) => (
+            <StaffItem
+              key={employee._id}
+              id={employee._id}
+              name={employee.Staff_name}
+              position={employee.Staff_position}
+              email={employee.Staff_email}
+              phone={employee.Staff_phone}
+              image={employee.Staff_image}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
+
 export default StaffPage;

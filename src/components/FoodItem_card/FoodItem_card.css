@@ -96,16 +96,6 @@
   transition: background-color 0.3s ease;
 }
 
-.edit-button {
-  background-color: #4caf50; /* Green */
-  color: white;
-}
-
-.delete-button {
-  background-color: #f44336; /* Red */
-  color: white;
-}
-
 /* Hover Effects */
 .edit-button:hover {
   background-color: #45a049; /* Darker green */

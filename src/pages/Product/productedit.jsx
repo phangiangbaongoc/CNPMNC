@@ -2,30 +2,10 @@ import React from "react";
 import { Button, Form, Input, notification } from "antd";
 import { createProductApi } from "../../util/api";
 import { useNavigate } from "react-router-dom";
-import "./product.css";
-const CreateProduct = () => {
+import "./productedit.css";
+const UpdateProduct = () => {
   const navigate = useNavigate();
-  // const onFinish = async (values) => {
-  //   const { Food_name, Price, Food_picture, Food_status } = values;
-  //   const res = await createProductApi(
-  //     Food_name,
-  //     Price,
-  //     Food_picture,
-  //     Food_status
-  //   );
-  //   if (res) {
-  //     notification.success({
-  //       message: "CREATE PRODUCT",
-  //       description: "Success",
-  //     });
-  //     navigate("/listproduct");
-  //   } else {
-  //     notification.error({
-  //       message: "CREATE PRODUCT",
-  //       description: "error",
-  //     });
-  //   }
-  // };
+
   const onFinish = async (values) => {
     const { Food_name, Price, Food_picture, Food_status, categoryID } = values;
 
@@ -55,7 +35,7 @@ const CreateProduct = () => {
 
   return (
     <div className="create-product-container">
-      <h2>Thêm Sản Phẩm Mới</h2>
+      <h2>Cập nhật sản phẩm</h2>
       <Form
         name="create-product"
         labelCol={{ span: 6 }}
@@ -102,11 +82,11 @@ const CreateProduct = () => {
 
         <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
           <Button type="primary" htmlType="submit" className="submit-button">
-            Thêm sản phẩm
+            Cập nhật
           </Button>
         </Form.Item>
       </Form>
     </div>
   );
 };
-export default CreateProduct;
+export default UpdateProduct;

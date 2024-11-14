@@ -46,76 +46,10 @@
 .active {
   background-color: #778899;
 }
-
-/* Product List Styles */
-.product-list {
-  width: 55%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  background-color: #fff;
-  overflow-y: auto;
-  height: calc(100vh - 40px);
-  /* Thêm viền và góc bo */
-  border: 2px solid #2f4f4f; /* Viền với độ dày 2px và màu #2f4f4f */
-  border-radius: 8px; /* Góc bo cho viền */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ */
+.food_diplay {
+  padding-left: 10%;
+  padding-right: 10%;
 }
-
-.product-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  min-height: 280px;
-  max-height: 300px;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  margin-bottom: 5px;
-}
-.product-card h3 {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 5px; /* Giảm khoảng cách giữa h3 và p */
-  text-align: center;
-}
-
-.product-card p {
-  font-size: 15px;
-  font-weight: 500;
-  color: red; /* Đã chỉnh lại thành màu đỏ */
-  margin-bottom: 0px; /* Khoảng cách dưới có thể giữ nguyên hoặc điều chỉnh theo ý muốn */
-}
-
-.add-to-cart-btn {
-  background-color: #ff5722;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px; /* Thêm góc bo */
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #e64a19;
-}
-
 /* Cart Styles */
 .cart {
   width: 25%;

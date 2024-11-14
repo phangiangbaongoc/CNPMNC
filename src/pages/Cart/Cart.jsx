@@ -1,73 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Cart.css"; // Import file CSS
+import FoodItemCard from "../../components/FoodItem_card/FoodItem_card";
+import { getProductApi } from "../../util/api";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Tất cả");
+  const [dataSource, setDataSource] = useState([]);
 
-  const products = [
-    {
-      name: "Cà phê đen đá",
-      price: 23000,
-      image: "path/to/image1.jpg",
-      category: "Cà phê",
-    },
-    {
-      name: "Cà phê sữa đá",
-      price: 25000,
-      image: "path/to/image2.jpg",
-      category: "Cà phê",
-    },
-    {
-      name: "Trà sữa",
-      price: 22000,
-      image: "path/to/image3.jpg",
-      category: "Trà sữa",
-    },
-    {
-      name: "Trà đào",
-      price: 24000,
-      image: "path/to/image4.jpg",
-      category: "Trà",
-    },
-    {
-      name: "Topping đặc biệt",
-      price: 1000,
-      image: "path/to/image5.jpg",
-      category: "Topping",
-    },
-    {
-      name: "Cà phê nâu",
-      price: 3000,
-      image: "path/to/image1.jpg",
-      category: "Cà phê",
-    },
-    {
-      name: "Cà phê ",
-      price: 5000,
-      image: "path/to/image2.jpg",
-      category: "Cà phê",
-    },
-    {
-      name: "Bạc xỉu",
-      price: 2000,
-      image: "path/to/image3.jpg",
-      category: "Trà sữa",
-    },
-    {
-      name: "Trà bí",
-      price: 4000,
-      image: "path/to/image4.jpg",
-      category: "Trà",
-    },
-    {
-      name: "Topping trân châu",
-      price: 15000,
-      image: "path/to/image5.jpg",
-      category: "Topping",
-    },
-    // Thêm các sản phẩm khác ở đây
-  ];
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await getProductApi();
+        if (res && res.data) {
+          setDataSource(res.data);
+        }
+      } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
+      }
+    };
+    fetchProduct();
+  }, []);
 
   const categories = ["Tất cả", "Cà phê", "Trà sữa", "Trà", "Topping", "Khác"];
 
@@ -112,11 +65,6 @@ const Cart = () => {
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const filteredProducts =
-    selectedCategory === "Tất cả"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
-
   return (
     <div className="app-container">
       {/* Sidebar */}
@@ -135,24 +83,20 @@ const Cart = () => {
       </div>
 
       {/* Product List */}
-      <div className="product-list">
-        {filteredProducts.map((product, index) => (
-          <div key={index} className="product-card">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="product-image"
-            />
-            <h3>{product.name}</h3>
-            <p>{product.price.toLocaleString()} VND</p>
-            <button
-              className="add-to-cart-btn"
-              onClick={() => handleAddToCart(product)}
-            >
-              Thêm vào giỏ
-            </button>
-          </div>
-        ))}
+      <div className="food-display">
+        <div className="food-display-list">
+          {dataSource.map((item) => (
+            <div key={item._id}>
+              <FoodItemCard
+                id={item._id}
+                name={item.Food_name}
+                price={item.Price}
+                image={item.Food_picture}
+                handleAddToCart={handleAddToCart} // Truyền hàm vào component
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Cart */}

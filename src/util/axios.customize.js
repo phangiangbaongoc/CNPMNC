@@ -2,11 +2,15 @@ import axios from "axios";
 // Set config defaults when creating the instance
 const instance = axios.create({
   baseURL: "http://localhost:8080",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Alter defaults after instance has been created
 // Add a request interceptor
 // axios.interceptors.request.use
+// Tùy chỉnh các request hoặc response nếu cần
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent

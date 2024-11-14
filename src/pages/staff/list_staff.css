@@ -1,0 +1,23 @@
+.form-container {
+  width: 300px;
+  height: 100px;
+}
+
+.staff-display-list {
+  /* Renamed for consistency */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-top: 30px;
+  gap: 30px;
+  row-gap: 50px;
+}
+
+/* Optional hover effect for consistency */
+.staff-display-list .staff-item {
+  transition: transform 0.3s ease;
+}
+
+.staff-display-list .staff-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #00000020;
+}
