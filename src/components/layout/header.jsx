@@ -21,6 +21,12 @@ const Header = () => {
             key: "user",
             icon: <MailOutlined />,
           },
+
+          {
+            label: <Link to={"/list_staff"}>Nhân viên</Link>,
+            key: "staff",
+            icon: <MailOutlined />,
+          },
           {
             label: "Product",
             key: "SubMenu1",
@@ -48,11 +54,6 @@ const Header = () => {
     {
       label: <Link to={"/cart"}>cart</Link>,
       key: "cart",
-      icon: <MailOutlined />,
-    },
-    {
-      label: <Link to={"/list_staff"}>Nhân viên</Link>,
-      key: "staff",
       icon: <MailOutlined />,
     },
     {
