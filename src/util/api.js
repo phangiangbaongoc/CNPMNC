@@ -39,6 +39,10 @@ const getProductApi = () => {
   const URL_API = "/v1/product/list_product";
   return axios.get(URL_API);
 };
+const UpdateProductApi = (id) => {
+  const URL_API = `/v1/product/list_product/${id}`;
+  return axios.get(URL_API);
+};
 // API xóa sản phẩm
 const deleteProductApi = (id) => {
   const URL_API = `/v1/product/delete_product/${id}`;
@@ -119,6 +123,7 @@ export {
   // SẢN PHẨM
   createProductApi,
   getProductApi,
+  UpdateProductApi,
   deleteProductApi,
   // VẬT DỤNG KHO
   createWareApi,

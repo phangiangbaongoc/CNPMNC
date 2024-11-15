@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./styles/global.css";
+import "../index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterPage from "./pages/register.jsx";
@@ -23,6 +24,7 @@ import FoodItem from "./components/FoodItem/FoodItem.jsx";
 import StaffDisplay from "./components/StaffDisplay/StaffDisplay.jsx";
 import StaffItem from "./components/StaffItem/StaffItem.jsx";
 import UpdateEmployee from "./components/Staff/UpdateEmployee.jsx";
+import Dashboard from "./components/revenue/revenue.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "order",
-        element: <Order />,
+        element: <Dashboard />,
       },
       {
         path: "list_ware",

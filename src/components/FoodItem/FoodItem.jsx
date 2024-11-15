@@ -48,6 +48,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             >
               Edit
             </button>
+
             <button
               className="delete-button"
               onClick={() => navigate("/product")}
