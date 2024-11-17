@@ -9,26 +9,29 @@
 
 .food-item-image {
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giữ tỷ lệ ảnh và cắt phần dư để vừa khít khung */
   border-radius: 15px 15px 0px 0px;
+  overflow: hidden; /* Loại bỏ phần thừa nếu ảnh lớn hơn khung */
 }
 
 .food-item-info {
   padding: 20px;
 }
 
-.food-item-name-rating {
+.food-item-price-rating {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.food-item-name-rating p {
+.food-item-price-rating p {
   font-size: 20px;
   font-weight: 500;
 }
 
-.food-item-name-rating img {
+.food-item-price-rating img {
   width: 70px;
 }
 

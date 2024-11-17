@@ -116,6 +116,44 @@ const getStaffApi = () => {
   const URL_API = "/v1/staff/list_staff";
   return axios.get(URL_API);
 };
+
+// GIỎ HÀNG
+// API thêm món vào giỏ hàng
+// const addToCartApi = async ({ productId, quantity, price }) => {
+//   const URL_API = "/v1/cart/cart"; // Đảm bảo đường dẫn này đúng với API của bạn
+//   const data = {
+//     staff_id: "staff123", // Dùng thông tin người dùng thực tế
+//     items: [
+//       {
+//         productId,
+//         quantity,
+//         price,
+//       },
+//     ],
+//   };
+//   return axios.post(URL_API, data);
+// };
+
+// API lấy giỏ hàng
+// const getCartApi = async () => {
+//   const URL_API = "/v1/cart/edit_cart"; // Đảm bảo đường dẫn này đúng với API của bạn
+//   return axios.get(URL_API, {
+//     params: {
+//       staff_id: "staff123", // Dùng thông tin người dùng thực tế
+//     },
+//   });
+// };
+
+// // API xóa món khỏi giỏ hàng
+// const removeFromCartApi = async (itemId) => {
+//   const URL_API = "/v1/cart/delete_cart"; // Đảm bảo đường dẫn này đúng với API của bạn
+//   const data = {
+//     staff_id: "staff123", // Dùng thông tin người dùng thực tế
+//     productId: itemId,
+//   };
+//   return axios.delete(URL_API, { data });
+// };
+
 export {
   createUserApi,
   loginApi,
@@ -131,4 +169,8 @@ export {
   // NHÂN VIÊN
   createStaffApi,
   getStaffApi,
+  // GIỎ HÀNG
+  // addToCartApi,
+  // getCartApi,
+  // removeFromCartApi,
 };

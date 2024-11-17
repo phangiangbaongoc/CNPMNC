@@ -1,8 +1,85 @@
-/* OrderList.css */
-.order-list {
-  padding: 20px;
+/* .table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.order-list h2 {
-  color: #333;
+.th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tr:hover {
+  background-color: coral;
+} */
+.revenue-statistics {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.revenue-statistics h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.filter-container input,
+.filter-container select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.filter-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+.statistics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.statistics-table th,
+.statistics-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.statistics-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.statistics-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.statistics-table tr:hover {
+  background-color: #f1f1f1;
 }

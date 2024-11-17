@@ -52,8 +52,13 @@ const Header = () => {
         ]
       : []),
     {
-      label: <Link to={"/cart"}>cart</Link>,
+      label: <Link to={"/cart"}>Giỏ hàng</Link>,
       key: "cart",
+      icon: <MailOutlined />,
+    },
+    {
+      label: <Link to={"/don_hang"}>Đơn hàng</Link>,
+      key: "order",
       icon: <MailOutlined />,
     },
     {

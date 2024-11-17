@@ -1,33 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Input, notification } from "antd";
 import { createProductApi } from "../../util/api";
 import { useNavigate } from "react-router-dom";
 import "./product.css";
 const CreateProduct = () => {
   const navigate = useNavigate();
-  // const onFinish = async (values) => {
-  //   const { Food_name, Price, Food_picture, Food_status } = values;
-  //   const res = await createProductApi(
-  //     Food_name,
-  //     Price,
-  //     Food_picture,
-  //     Food_status
-  //   );
-  //   if (res) {
-  //     notification.success({
-  //       message: "CREATE PRODUCT",
-  //       description: "Success",
-  //     });
-  //     navigate("/listproduct");
-  //   } else {
-  //     notification.error({
-  //       message: "CREATE PRODUCT",
-  //       description: "error",
-  //     });
-  //   }
-  // };
+  const [Food_picture, setFoodpicture] = useState(null);
+  const handleImageUpload = (event, setImage) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
+
   const onFinish = async (values) => {
-    const { Food_name, Price, Food_picture, Food_status, categoryID } = values;
+    const { Food_name, Price, Food_status, categoryID } = values;
 
     // Tạo FormData để gửi file
     const formData = new FormData();
@@ -69,7 +56,11 @@ const CreateProduct = () => {
           name="Food_picture"
           rules={[{ required: true, message: "Vui lòng chọn ảnh sản phẩm!" }]}
         >
-          <Input type="file" />
+          <Input
+            type="file"
+            onChange={(e) => handleImageUpload(e, setFoodpicture)}
+            accept="image/*"
+          />
         </Form.Item>
 
         <Form.Item

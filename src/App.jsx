@@ -49,7 +49,9 @@ function App() {
         ) : (
           <>
             <Header />
-            <Outlet />
+            <div style={{ paddingTop: "60px" }}>
+              <Outlet />
+            </div>
             <Footer />
           </>
         )}

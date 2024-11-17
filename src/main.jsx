@@ -25,6 +25,7 @@ import StaffDisplay from "./components/StaffDisplay/StaffDisplay.jsx";
 import StaffItem from "./components/StaffItem/StaffItem.jsx";
 import UpdateEmployee from "./components/Staff/UpdateEmployee.jsx";
 import Dashboard from "./components/revenue/revenue.jsx";
+import OrderList from "./pages/OrderList/Order.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "list_staff",
         element: <StaffPage />,
+      },
+      {
+        path: "don_hang",
+        element: <OrderList />,
       },
     ],
   },

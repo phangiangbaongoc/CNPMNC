@@ -1,235 +1,132 @@
-// // OrderList.js
-// import React, { useState, useEffect } from "react";
-// // import OrderItem from "./OrderItem";
-// import axios from "axios";
-// import "../OrderList/OrderList";
-
-// const OrderList = () => {
-//   const [orders, setOrders] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .get("http://localhost:5000/api/orders")
-//       .then((response) => setOrders(response.data))
-//       .catch((error) => console.error("Error fetching orders:", error));
-//   }, []);
-
-//   const handleAcceptOrder = (orderId) => {
-//     axios
-//       .put(`http://localhost:5000/api/orders/${orderId}/accept`)
-//       .then(() => {
-//         setOrders(
-//           orders.map((order) =>
-//             order.id === orderId ? { ...order, status: "accepted" } : order
-//           )
-//         );
-//       })
-//       .catch((error) => console.error("Error accepting order:", error));
-//   };
-
-//   const handleCancelOrder = (orderId) => {
-//     axios
-//       .put(`http://localhost:5000/api/orders/${orderId}/cancel`)
-//       .then(() => {
-//         setOrders(orders.filter((order) => order.id !== orderId));
-//       })
-//       .catch((error) => console.error("Error cancelling order:", error));
-//   };
-
+// import "./Order.css";
+// const OrderPage = () => {
 //   return (
-//     <div className="order-list">
-//       <h2>Đơn hàng</h2>
-//       <div>
-//         {orders.map((order) => (
-//           <OrderItem
-//             key={order.id}
-//             order={order}
-//             onAccept={handleAcceptOrder}
-//             onCancel={handleCancelOrder}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-//   return <div> orrder lisst</div>;
-// };
-
-// export default OrderList;
-
-// import React, { useEffect, useState } from "react";
-// import { Pie } from "react-chartjs-2";
-// import axios from "axios";
-
-// const OrderList = () => {
-//   const [orderCount, setOrderCount] = useState(0);
-//   const [revenue, setRevenue] = useState(0);
-//   const [chartData, setChartData] = useState({});
-
-//   useEffect(() => {
-//     // Hàm gọi API để lấy dữ liệu doanh thu và số lượng đơn hàng
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get("/v1/api/orders/stats");
-//         const data = {
-//           labels: ["January", "February", "March"],
-//           datasets: data.datasets || [], // Đảm bảo rằng datasets không undefined
-//         };
-
-//         // Giả sử API trả về các dữ liệu này
-//         setOrderCount(data.totalOrders);
-//         setRevenue(data.totalRevenue);
-
-//         // Cấu hình dữ liệu biểu đồ
-//         setChartData({
-//           labels: ["Completed Orders", "Pending Orders", "Cancelled Orders"],
-//           datasets: [
-//             {
-//               data: [
-//                 data.completedOrders,
-//                 data.pendingOrders,
-//                 data.cancelledOrders,
-//               ],
-//               backgroundColor: ["#4CAF50", "#FF9800", "#F44336"],
-//               hoverBackgroundColor: ["#66BB6A", "#FFB74D", "#EF5350"],
-//             },
-//           ],
-//         });
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="revenue-dashboard">
-//       <h2>Revenue Dashboard</h2>
-//       <div className="stats">
-//         <p>
-//           <strong>Total Orders:</strong> {orderCount}
-//         </p>
-//         <p>
-//           <strong>Total Revenue:</strong> ${revenue}
-//         </p>
-//       </div>
-//       <div className="chart">
-//         <h3>Order Status Distribution</h3>
-//         <Pie data={chartData} />
-//       </div>
+//     <div>
+//       <table className="min-w-full bg-white border border-gray-200">
+//         <thead>
+//           <tr>
+//             <th className="py-2 px-4 font-semibold border-b">Mã đơn hàng</th>
+//             <th className="py-2 px-4 font-semibold border-b">Ngày tạo</th>
+//             <th className="py-2 px-4 font-semibold border-b">Số lượng món</th>
+//             <th className="py-2 px-4 font-semibold border-b">Khách đã trả</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {/* {topProducts.map((product, index) => (
+//                 <tr key={index} className="text-center">
+//                   <td className="py-2 px-4 border-b justify-center flex">
+//                     <img className="w-16 h-16" src={product.photo} alt="" />
+//                   </td>
+//                   <td className="py-2 px-4 border-b">{product.nameStore}</td>
+//                   <td className="py-2 px-4 border-b">{product.quantity}</td>
+//                   <td className="py-2 px-4 border-b">{product.revenue}</td>
+//                   <td className="py-2 px-4 border-b">
+//                     <button className="text-blue-600 hover:underline">
+//                       ...
+//                     </button>
+//                   </td>
+//                 </tr>
+//               ))} */}
+//         </tbody>
+//       </table>
 //     </div>
 //   );
 // };
+// export default OrderPage;
+import React, { useState } from "react";
+import "./Order.css";
 
-// export default OrderList;
-import React, { useState, useEffect } from "react";
-import { Card, Space } from "antd";
-import { Pie } from "react-chartjs-2";
-import axios from "axios";
-import ListOrder from "../../components/OrderItem/Orderlist";
+function RevenueStatistics() {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [period, setPeriod] = useState("day");
 
-const tabListNoTitle = [
-  {
-    key: "article",
-    label: "Article",
-  },
-  {
-    key: "app",
-    label: "App",
-  },
-  {
-    key: "project",
-    label: "Project",
-  },
-];
+  // Example data
+  const data = [
+    {
+      date: "30-05-2023",
+      totalOrders: 3,
+      deliveredOrders: 1,
+      canceledOrders: 2,
+      totalRevenue: "660,000 ₫",
+      revenueDelivered: "35,000 ₫",
+      revenueCanceled: "625,000 ₫",
+    },
+    {
+      date: "31-05-2023",
+      totalOrders: 4,
+      deliveredOrders: 4,
+      canceledOrders: 0,
+      totalRevenue: "409,184 ₫",
+      revenueDelivered: "409,184 ₫",
+      revenueCanceled: "0 ₫",
+    },
+  ];
 
-const contentListNoTitle = {
-  article: <p>Article content</p>,
-  app: <p>App content</p>,
-  project: <p>Project content</p>,
-};
-
-const Order = () => {
-  const [orders, setOrders] = useState([]);
-  const [orderCount, setOrderCount] = useState(0);
-  const [revenue, setRevenue] = useState(0);
-  const [chartData, setChartData] = useState({});
-  const [activeTabKey, setActiveTabKey] = useState("app");
-
-  const onTabChange = (key) => {
-    setActiveTabKey(key);
+  const handleDateChange = (e) => {
+    if (e.target.name === "startDate") {
+      setStartDate(e.target.value);
+    } else {
+      setEndDate(e.target.value);
+    }
   };
 
-  useEffect(() => {
-    // Fetch orders and stats
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/orders");
-        setOrders(response.data);
-
-        // Fetch stats for orders
-        const statsResponse = await axios.get("/v1/api/orders/stats");
-        const data = statsResponse.data;
-
-        setOrderCount(data.totalOrders);
-        setRevenue(data.totalRevenue);
-
-        setChartData({
-          labels: ["Completed Orders", "Pending Orders", "Cancelled Orders"],
-          datasets: [
-            {
-              data: [
-                data.completedOrders,
-                data.pendingOrders,
-                data.cancelledOrders,
-              ],
-              backgroundColor: ["#4CAF50", "#FF9800", "#F44336"],
-              hoverBackgroundColor: ["#66BB6A", "#FFB74D", "#EF5350"],
-            },
-          ],
-        });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const handlePeriodChange = (e) => {
+    setPeriod(e.target.value);
+  };
 
   return (
-    <>
-      <Card
-        style={{ width: "100%" }}
-        tabList={tabListNoTitle}
-        activeTabKey={activeTabKey}
-        onTabChange={onTabChange}
-        tabProps={{ size: "middle" }}
-        tabBarExtraContent={<a href="#">More</a>}
-      >
-        {contentListNoTitle[activeTabKey]}
-      </Card>
+    <div className="revenue-statistics">
+      <h2>Thống kê doanh thu</h2>
 
-      <Space direction="vertical" size={16} style={{ width: "100%" }}>
-        <Card title="Order List" extra={<a href="#">More</a>}>
-          <ListOrder orders={orders} />
-        </Card>
-        <Card title="Revenue Dashboard" extra={<a href="#">More</a>}>
-          <div className="stats">
-            <p>
-              <strong>Total Orders:</strong> {orderCount}
-            </p>
-            <p>
-              <strong>Total Revenue:</strong> ${revenue}
-            </p>
-          </div>
-          <div className="chart">
-            <h3>Order Status Distribution</h3>
-            <Pie data={chartData} />
-          </div>
-        </Card>
-      </Space>
-    </>
+      <div className="filter-container">
+        <label>Từ:</label>
+        <input
+          type="date"
+          name="startDate"
+          value={startDate}
+          onChange={handleDateChange}
+        />
+        <label>Đến:</label>
+        <input
+          type="date"
+          name="endDate"
+          value={endDate}
+          onChange={handleDateChange}
+        />
+        <label>Thống kê theo:</label>
+        <select value={period} onChange={handlePeriodChange}>
+          <option value="day">Ngày</option>
+          <option value="week">Tuần</option>
+          <option value="month">Tháng</option>
+        </select>
+        <button className="filter-button">Thống kê</button>
+      </div>
+
+      <table className="statistics-table">
+        <thead>
+          <tr>
+            <th>Mã đơn hàng</th>
+            <th>Ngày lập đơn hàng</th>
+            <th>Tổng số món</th>
+            <th>Tổng thành tiền</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, index) => (
+            <tr key={index}>
+              <td>{row.date}</td>
+              <td>{row.totalOrders}</td>
+              <td>{row.canceledOrders}</td>
+              <td>{row.totalRevenue}</td>
+              <td>{row.revenueCanceled}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
-};
+}
 
-export default Order;
+export default RevenueStatistics;

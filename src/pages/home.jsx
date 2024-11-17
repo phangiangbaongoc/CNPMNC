@@ -60,9 +60,10 @@ import { useState } from "react";
 const HomePage = () => {
   const [category, setCategory] = useState("All");
   return (
-    <div>
+    <div className="flex flex-col gap 12">
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
+      <div className="bg-white rounded-lg shadow-md yp-8 flex flex-col gap-5 text-center"></div>
     </div>
   );
 };

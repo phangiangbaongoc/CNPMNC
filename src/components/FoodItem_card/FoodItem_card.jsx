@@ -10,12 +10,11 @@ const FoodItem = ({ id, name, price, description, image, handleAddToCart }) => {
         <img className="food-item-image" src={image} alt="" />
       </div>
       <div className="food-item-info">
-        <div className="food-item-name-rating">
-          <p>{name}</p>
+        <p>{name}</p>
+        <div className="food-item-price-rating">
           <img src={assets.rating_starts} alt="" />
+          <p className="food-item-price">{price} VND</p>
         </div>
-        <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
         <div className="addcart">
           <button
             className="edit-button"
