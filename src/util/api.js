@@ -15,7 +15,6 @@ const getUserApi = () => {
   const URL_API = "/v1/api/user";
   return axios.get(URL_API);
 };
-
 // API login truyền vào vào FE
 const loginApi = (email, password) => {
   const URL_API = "/v1/api/login";
@@ -25,30 +24,46 @@ const loginApi = (email, password) => {
   };
   return axios.post(URL_API, data);
 };
-// Tạo sản phẩm
-const createProductApi = (formData) => {
+const createProductApi = (
+  Food_name,
+  Price,
+  Food_status,
+  Food_picture,
+  categoryID
+) => {
   const URL_API = "/v1/product/create_product";
-  return axios.post(URL_API, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data", // Đảm bảo gửi đúng loại content
-    },
-  });
+  const data = {
+    Food_name,
+    Price,
+    Food_status,
+    Food_picture,
+    categoryID,
+  };
+  return axios.post(URL_API, data);
 };
-// API lấy danh sách sản phẩm
 const getProductApi = () => {
   const URL_API = "/v1/product/list_product";
   return axios.get(URL_API);
 };
-const UpdateProductApi = (id) => {
-  const URL_API = `/v1/product/list_product/${id}`;
+// Lấy thông tin chi tiết sản phẩm
+const getProductDetailApi = (id) => {
+  const URL_API = `/v1/product/detail/${id}`;
   return axios.get(URL_API);
+};
+// Cập nhật sản phẩm
+const updateProductApi = (id, formData) => {
+  const URL_API = `/v1/product/update/${id}`;
+  return axios.put(URL_API, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Hỗ trợ upload file
+    },
+  });
 };
 // API xóa sản phẩm
 const deleteProductApi = (id) => {
   const URL_API = `/v1/product/delete_product/${id}`;
   return axios.delete(URL_API);
 };
-
 //KHO
 // API tạo sản phẩm kho mới
 const createWareApi = (
@@ -68,7 +83,6 @@ const createWareApi = (
   };
   return axios.post(URL_API, data);
 };
-
 // APi lấy danh sách kho
 const getWareApi = () => {
   const URL_API = "/v1/warehouse/list_warehouse";
@@ -77,44 +91,48 @@ const getWareApi = () => {
 
 // NHÂN VIÊN
 // API tạo nhân viên mới
-const createStaffApi = (formData) => {
-  const URL_API = "/v1/staff/create_staff";
-  return axios.post(URL_API, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data", // Đảm bảo gửi đúng loại content
-    },
-  });
+const createStaffApi = (
+  Staff_name,
+  Staff_birthday,
+  Staff_sex,
+  Staff_phone,
+  Staff_email,
+  Staff_address,
+  Staff_status,
+  Staff_image
+) => {
+  const URL_API = "/v1/staff/create_staffs";
+  const data = {
+    Staff_name,
+    Staff_birthday,
+    Staff_sex,
+    Staff_phone,
+    Staff_email,
+    Staff_address,
+    Staff_status,
+    Staff_image,
+  };
+  return axios.post(URL_API, data);
 };
-// const createStaffApi = (
-//   Staff_name,
-//   Staff_birthday,
-//   Staff_sex,
-//   Staff_phone,
-//   Staff_email,
-//   Staff_address,
-//   Staff_date,
-//   Staff_status,
-//   Staff_image
-// ) => {
-//   const URL_API = "/v1/staff/create_staff";
-//   const data = {
-//     Staff_name,
-//     Staff_birthday,
-//     Staff_sex,
-//     Staff_phone,
-//     Staff_email,
-//     Staff_address,
-//     Staff_date,
-//     Staff_status,
-//     Staff_image,
-//   };
-//   return axios.post(URL_API, data);
-// };
-
 // APi lấy danh sách nhân viên
 const getStaffApi = () => {
-  const URL_API = "/v1/staff/list_staff";
+  const URL_API = "/v1/staff/list_staffs";
   return axios.get(URL_API);
+};
+const deleteStaffApi = (id) => {
+  const URL_API = `/v1/staff/delete_staff/${id}`;
+  return axios.delete(URL_API);
+};
+export const addToCartApi = (data) => {
+  return axios.post("/add-to-cart", data);
+};
+const postCartApi = async (cart) => {
+  const URL_API = `/v1/cart/create_cart`;
+  return axios.post(URL_API);
+};
+const postOrderApi = async () => {
+  const URL_API = "/v1/order/create";
+  return axios.post(URL_API);
 };
 
 // GIỎ HÀNG
@@ -161,7 +179,8 @@ export {
   // SẢN PHẨM
   createProductApi,
   getProductApi,
-  UpdateProductApi,
+  getProductDetailApi,
+  updateProductApi,
   deleteProductApi,
   // VẬT DỤNG KHO
   createWareApi,
@@ -169,7 +188,10 @@ export {
   // NHÂN VIÊN
   createStaffApi,
   getStaffApi,
+  deleteStaffApi,
   // GIỎ HÀNG
+  postCartApi,
+  postOrderApi,
   // addToCartApi,
   // getCartApi,
   // removeFromCartApi,

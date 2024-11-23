@@ -15,7 +15,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Order from "./pages/OrderList/Order.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
-import CreateWare from "./pages/Ware/ware.jsx";
+import CreateWare from "./components/Warehouse/create_ware/create_ware.jsx";
 import WarePage from "./pages/Ware/list_ware.jsx";
 import UpdateProduct from "./pages/Product/productedit.jsx";
 import CreateEmployee from "./components/Staff/CreateEmployee.jsx";
@@ -26,6 +26,10 @@ import StaffItem from "./components/StaffItem/StaffItem.jsx";
 import UpdateEmployee from "./components/Staff/UpdateEmployee.jsx";
 import Dashboard from "./components/revenue/revenue.jsx";
 import OrderList from "./pages/OrderList/Order.jsx";
+import DetailStaff from "./pages/staff/detail_staff.jsx";
+import ListStaff from "./pages/staff/list_staff.jsx";
+import CreateStaff from "./components/Staff/staff.jsx";
+import EditWare from "./components/Warehouse/edit_ware/edit_ware.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +48,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "listproduct",
+        path: "list_product",
         element: <ProductPage />,
       },
       {
@@ -61,11 +65,15 @@ const router = createBrowserRouter([
       },
       {
         path: "list_staff",
-        element: <StaffPage />,
+        element: <ListStaff />,
       },
       {
         path: "don_hang",
         element: <OrderList />,
+      },
+      {
+        path: "detail_staff",
+        element: <DetailStaff />,
       },
     ],
   },
@@ -91,11 +99,7 @@ const router = createBrowserRouter([
   },
   {
     path: "createStaff",
-    element: <CreateEmployee />,
-  },
-  {
-    path: "staffdisplay",
-    element: <StaffDisplay />,
+    element: <CreateStaff />,
   },
   {
     path: "staffItem",
@@ -104,6 +108,10 @@ const router = createBrowserRouter([
   {
     path: "staff_edit",
     element: <UpdateEmployee />,
+  },
+  {
+    path: "edit_ware:id",
+    element: <EditWare />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

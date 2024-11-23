@@ -13,7 +13,7 @@ const CreateStaff = () => {
         message: "CREATE STAFF",
         description: "Success",
       });
-      navigate("/liststaff");
+      navigate("/list_staff");
     } else {
       notification.error({
         message: "CREATE STAFF",

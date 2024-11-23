@@ -2,13 +2,13 @@ import { Table, Button, notification } from "antd";
 import { useEffect, useState } from "react";
 import "./list_ware.css";
 import { getWareApi } from "../../util/api";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const WarePage = () => {
+  const navigate = useNavigate();
   // lấy data động
   const [dataSource, setDataSource] = useState([]);
   useEffect(() => {
-    const fetchWare = async () => {
+    const fetchStaff = async () => {
       const res = await getWareApi();
       if (!res?.message) {
         setDataSource(res);
@@ -19,13 +19,8 @@ const WarePage = () => {
         });
       }
     };
-    fetchWare();
+    fetchStaff();
   }, []);
-  const navigate = useNavigate();
-  const handleAddItem = () => {
-    // Navigate to the product page
-    navigate("/ware"); // Replace "/product" with the correct path if necessary
-  };
 
   const columns = [
     {
@@ -45,11 +40,24 @@ const WarePage = () => {
       dataIndex: "Ware_unit",
     },
     {
+      title: "Ngày nhập",
+      dataIndex: "Ware_entry_date",
+    },
+    {
+      title: "Ngày suất",
+      dataIndex: "Ware_export_date",
+    },
+    {
       title: "Activity",
       dataIndex: "activity",
       render: (text, record) => (
         <div className="bg_button">
-          <Button className="custom-button">Sửa</Button>
+          <Button
+            className="custom-button"
+            onClick={() => navigate(`/edit_ware/${record._id}`)}
+          >
+            Sửa
+          </Button>
           <Button className="custom-button">Xóa</Button>
         </div>
       ),
@@ -59,7 +67,7 @@ const WarePage = () => {
   return (
     <div style={{ padding: 30 }}>
       <div className="title">DANH SÁCH SẢN PHẨM KHO</div>
-      <Button type="primary" onClick={handleAddItem}>
+      <Button type="primary" onClick={() => navigate("/ware")}>
         Thêm vật dụng
       </Button>
       <Table

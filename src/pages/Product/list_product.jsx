@@ -1,6 +1,6 @@
 import { Table, Button, notification } from "antd";
 import { useEffect, useState } from "react";
-import { getProductApi } from "../../util/api";
+import { createProductApi, getProductApi } from "../../util/api";
 import { useNavigate } from "react-router-dom";
 import "./list_product.css";
 import FoodItem from "../../components/FoodItem/FoodItem";
@@ -8,24 +8,38 @@ import FoodItem from "../../components/FoodItem/FoodItem";
 
 const ProductPage = () => {
   // lấy data động
-  const [dataSource, setDataSource] = useState([]);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const res = await getProductApi();
-        if (res && res.data) {
-          setDataSource(res.data); // Chắc chắn rằng bạn truy cập đúng phần dữ liệu
-          console.log(res.data);
-          console.log("pro: " + dataSource);
-        }
-      } catch (error) {
-        console.error("Lỗi khi gọi API:", error);
+  const fetchProduct = async () => {
+    try {
+      const res = await getProductApi();
+      console.log("API Response:", res); // Kiểm tra phản hồi API
+      if (res && res.data && Array.isArray(res.data)) {
+        setProducts(res.data); // Giả sử res.data là mảng nhân viên
       }
-    };
+    } catch (error) {
+      console.error("Lỗi khi gọi API:", error);
+    }
+  };
+  useEffect(() => {
     fetchProduct();
   }, []);
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const res = await getProductApi();
+  //       if (res && res.data) {
+  //         setProduct(res.data); // Chắc chắn rằng bạn truy cập đúng phần dữ liệu
+  //         console.log("Response từ API:", res.data);
+  //         console.log("pro: " + dataSource);
+  //       }
+  //     } catch (error) {
+  //       console.error("Lỗi khi gọi API:", error);
+  //     }
+  //   };
+  //   fetchProduct();
+  // }, []);
 
   // Thông báo xóa
   // const handleDelete = (record) => {
@@ -108,16 +122,21 @@ const ProductPage = () => {
 
       <div className="food-display">
         <div className="food-display-list">
-          {dataSource.map((item, index) => (
-            <div key={item._id}>
+          {products.length > 0 ? (
+            products.map((product) => (
               <FoodItem
-                id={item._id}
-                name={item.Food_name}
-                price={item.Price}
-                image={item.Food_picture}
+                key={product._id}
+                Food_name={product.Food_name}
+                Food_picture={
+                  product.Food_picture || "https://via.placeholder.com/150"
+                }
+                Price={product.Price}
+                Food_status={product.Staff_status}
               />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>Không có sản phẩm nào để hiển thị.</p>
+          )}
         </div>
       </div>
     </div>

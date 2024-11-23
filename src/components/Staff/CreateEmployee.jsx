@@ -6,12 +6,27 @@ const CreateEmployee = () => {
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
+  const [employeeData, setEmployeeData] = useState({
+    fullName: "",
+    dob: "",
+    gender: "",
+    phoneNumber: "",
+    email: "",
+    address: "",
+    startDate: "",
+    status: "",
+  });
   const handleImageChange = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleClose = () => {
     navigate("/employee");
+  };
+  const handleSubmit = () => {
+    // Lưu dữ liệu vào database hoặc API
+    console.log("Employee data:", employeeData);
+    navigate("/employee"); // Chuyển hướng về trang danh sách nhân viên sau khi lưu
   };
 
   return (

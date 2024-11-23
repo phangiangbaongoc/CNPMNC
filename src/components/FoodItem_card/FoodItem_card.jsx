@@ -3,7 +3,7 @@ import "./FoodItem_card.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../context/Storecontext";
 
-const FoodItem = ({ id, name, price, description, image, handleAddToCart }) => {
+const FoodItem = ({ id, name, price, image, handleAddToCart }) => {
   return (
     <div className="food-item">
       <div className="food-item-img-container">

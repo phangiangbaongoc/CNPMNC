@@ -33,7 +33,7 @@ const Header = () => {
             icon: <SettingOutlined />,
             children: [
               {
-                label: <Link to={"/listproduct"}>Product</Link>,
+                label: <Link to={"/list_product"}>Product</Link>,
                 key: "product",
                 icon: <MailOutlined />,
               },
@@ -44,7 +44,7 @@ const Header = () => {
               },
               {
                 label: <Link to={"/order"}>Doanh thu</Link>,
-                key: "order",
+                key: "doanh_thu",
                 icon: <MailOutlined />,
               },
             ],

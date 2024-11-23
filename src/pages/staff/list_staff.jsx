@@ -1,4 +1,3 @@
-// EmployeeList.jsx
 import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -7,30 +6,28 @@ import StaffItem from "../../components/StaffItem/StaffItem";
 import "./list_staff.css";
 
 const StaffPage = () => {
-  const [employees, dataSource] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchStaff = async () => {
-      try {
-        const res = await getStaffApi();
-        if (res && res.data) {
-          console.log(res.data);
-          console.log("pro: " + dataSource);
-        }
-      } catch (error) {
-        console.error("Lỗi khi gọi API:", error);
+  const fetchStaff = async () => {
+    try {
+      const res = await getStaffApi();
+      console.log("API Response:", res); // Kiểm tra phản hồi API
+      if (res && res.data && Array.isArray(res.data)) {
+        setEmployees(res.data); // Giả sử res.data là mảng nhân viên
       }
-    };
+    } catch (error) {
+      console.error("Lỗi khi gọi API:", error);
+    }
+  };
+  useEffect(() => {
     fetchStaff();
   }, []);
-
   const handleAddEmployee = () => {
     navigate("/createStaff");
   };
-
   return (
-    <div style={{ padding: 30 }}>
+    <div>
       <Button
         type="primary"
         style={{ marginBottom: 16 }}
@@ -38,22 +35,21 @@ const StaffPage = () => {
       >
         Add Employee
       </Button>
-      <h2>hi</h2>
-      <div className="employee-display">
-        <div className="employee-display-list">
-          {employees.map((employee) => (
-            <StaffItem
-              key={employee._id}
-              id={employee._id}
-              name={employee.Staff_name}
-              position={employee.Staff_position}
-              email={employee.Staff_email}
-              phone={employee.Staff_phone}
-              image={employee.Staff_image}
-            />
-          ))}
-        </div>
-      </div>
+      {employees.length > 0 ? (
+        employees.map((employee) => (
+          <StaffItem
+            key={employee._id}
+            Staff_name={employee.Staff_name}
+            Staff_image={
+              employee.Staff_image || "https://via.placeholder.com/150"
+            }
+            Staff_email={employee.Staff_email}
+            Staff_status={employee.Staff_status}
+          />
+        ))
+      ) : (
+        <p>Không có nhân viên nào để hiển thị.</p>
+      )}
     </div>
   );
 };

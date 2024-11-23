@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input, notification } from "antd";
-import { UpdateProductApi, createProductApi } from "../../util/api";
+import { getProductDetailApi, updateProductApi } from "../../util/api";
 import { useNavigate, useParams } from "react-router-dom";
 import "./productedit.css";
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); // Assume you get the product ID from the URL
+  const { id } = useParams(); // Lấy ID sản phẩm từ URL
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
+  // Lấy thông tin sản phẩm
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await UpdateProductApi(id); // Pass the product ID to get specific product data
+        const res = await getProductDetailApi(id); // Lấy thông tin chi tiết sản phẩm
         if (res && res.data) {
-          console.log("Product data:", res.data);
           const { Food_name, Price, Food_picture, Food_status, categoryID } =
             res.data;
-          // Set form fields with existing product data
           form.setFieldsValue({
             Food_name,
             Price,
             categoryID,
             Food_status,
-            Food_picture, // This assumes Food_picture is a URL or path to the image
           });
         }
       } catch (error) {
         notification.error({
           message: "Error",
-          description: "Failed to load product data",
+          description: "Không thể tải thông tin sản phẩm",
         });
       } finally {
         setLoading(false);
@@ -40,29 +38,34 @@ const UpdateProduct = () => {
 
     fetchProduct();
   }, [id, form]);
+
+  // Cập nhật sản phẩm
   const onFinish = async (values) => {
     const { Food_name, Price, Food_picture, Food_status, categoryID } = values;
 
-    // Tạo FormData để gửi file
+    // Gửi dữ liệu qua FormData
     const formData = new FormData();
     formData.append("Food_name", Food_name);
     formData.append("Price", Price);
-    formData.append("Food_picture", Food_picture.file);
-    formData.append("Food_status", Food_status);
     formData.append("categoryID", categoryID);
+    formData.append("Food_status", Food_status);
+    if (Food_picture && Food_picture.file) {
+      formData.append("Food_picture", Food_picture.file); // File upload
+    }
 
-    const res = await UpdateProductApi(id, formData);
-
-    if (res) {
-      notification.success({
-        message: "UPDATE PRODUCT",
-        description: "Cập nhật sản phẩm thành công",
-      });
-      navigate("/listproduct");
-    } else {
+    try {
+      const res = await updateProductApi(id, formData); // Gọi API cập nhật
+      if (res) {
+        notification.success({
+          message: "Cập nhật thành công",
+          description: "Thông tin sản phẩm đã được cập nhật.",
+        });
+        navigate("/listproduct"); // Điều hướng về danh sách sản phẩm
+      }
+    } catch (error) {
       notification.error({
-        message: "UPDATE PRODUCT",
-        description: "Error",
+        message: "Cập nhật thất bại",
+        description: "Không thể cập nhật thông tin sản phẩm.",
       });
     }
   };
@@ -72,20 +75,20 @@ const UpdateProduct = () => {
       <h2>Cập nhật sản phẩm</h2>
       <Form
         form={form}
-        name="create-product"
+        name="update-product"
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 18 }}
         onFinish={onFinish}
         autoComplete="off"
         layout="vertical"
         initialValues={{
-          Food_status: "Còn",
+          Food_status: "Còn", // Giá trị mặc định
         }}
       >
         <Form.Item
           label="Ảnh sản phẩm"
           name="Food_picture"
-          rules={[{ required: true, message: "Vui lòng chọn ảnh sản phẩm!" }]}
+          rules={[{ required: false }]}
         >
           <Input type="file" />
         </Form.Item>
@@ -132,4 +135,5 @@ const UpdateProduct = () => {
     </div>
   );
 };
+
 export default UpdateProduct;
