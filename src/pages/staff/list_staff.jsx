@@ -27,7 +27,7 @@ const StaffPage = () => {
     navigate("/createStaff");
   };
   return (
-    <div>
+    <div style={{ padding: 30 }}>
       <Button
         type="primary"
         style={{ marginBottom: 16 }}
@@ -35,21 +35,25 @@ const StaffPage = () => {
       >
         Add Employee
       </Button>
-      {employees.length > 0 ? (
-        employees.map((employee) => (
-          <StaffItem
-            key={employee._id}
-            Staff_name={employee.Staff_name}
-            Staff_image={
-              employee.Staff_image || "https://via.placeholder.com/150"
-            }
-            Staff_email={employee.Staff_email}
-            Staff_status={employee.Staff_status}
-          />
-        ))
-      ) : (
-        <p>Không có nhân viên nào để hiển thị.</p>
-      )}
+      <div className="staff-display">
+        <div className="staff-display-list">
+          {employees.length > 0 ? (
+            employees.map((employee) => (
+              <StaffItem
+                key={employee._id}
+                Staff_name={employee.Staff_name}
+                Staff_image={
+                  employee.Staff_image || "https://via.placeholder.com/150"
+                }
+                Staff_email={employee.Staff_email}
+                Staff_status={employee.Staff_status}
+              />
+            ))
+          ) : (
+            <p>Không có nhân viên nào để hiển thị.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

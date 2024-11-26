@@ -24,9 +24,9 @@ const CreateStaff = () => {
       Staff_sex,
       Staff_phone,
       Staff_email,
-      Staff_image,
       Staff_address,
-      Staff_status
+      Staff_status,
+      Staff_image
     );
 
     if (res) {

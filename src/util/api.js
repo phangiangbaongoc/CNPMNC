@@ -130,9 +130,17 @@ const postCartApi = async (cart) => {
   const URL_API = `/v1/cart/create_cart`;
   return axios.post(URL_API);
 };
-const postOrderApi = async () => {
+// const postOrderApi = async () => {
+//   const URL_API = "/v1/order/create";
+//   return axios.post(URL_API);
+// };
+const postOrderApi = async (orderData) => {
   const URL_API = "/v1/order/create";
-  return axios.post(URL_API);
+  return axios.post(URL_API, orderData);
+};
+const getOrderAPI = async (id) => {
+  const URL_API = `/v1/order/${id}`;
+  return axios.get(URL_API);
 };
 
 // GIỎ HÀNG
@@ -172,6 +180,23 @@ const postOrderApi = async () => {
 //   return axios.delete(URL_API, { data });
 // };
 
+const createMomoPaymentApi = (paymentData) => {
+  const URL_API = "/v1/payment/payment"; // Đường dẫn API trên backend
+  return axios.post(URL_API, paymentData);
+};
+// const createMomoPaymentApi = async (paymentData) => {
+//   try {
+//     const response = await axios.post("/v1/payment/payment", paymentData);
+//     return response.data; // Giả sử backend trả về JSON chứa `paymentUrl`
+//   } catch (error) {
+//     console.error(
+//       "Error in MoMo Payment API:",
+//       error.response?.data || error.message
+//     );
+//     throw error; // Ném lỗi để xử lý ở hàm `handleCheckout`
+//   }
+// };
+
 export {
   createUserApi,
   loginApi,
@@ -192,6 +217,9 @@ export {
   // GIỎ HÀNG
   postCartApi,
   postOrderApi,
+  getOrderAPI,
+  createMomoPaymentApi,
+
   // addToCartApi,
   // getCartApi,
   // removeFromCartApi,

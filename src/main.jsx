@@ -30,6 +30,7 @@ import DetailStaff from "./pages/staff/detail_staff.jsx";
 import ListStaff from "./pages/staff/list_staff.jsx";
 import CreateStaff from "./components/Staff/staff.jsx";
 import EditWare from "./components/Warehouse/edit_ware/edit_ware.jsx";
+import OrderDetails from "./components/Order/OrderItem/OrderDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
   {
     path: "edit_ware:id",
     element: <EditWare />,
+  },
+  {
+    path: "order_detail:id",
+    element: <OrderDetails />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

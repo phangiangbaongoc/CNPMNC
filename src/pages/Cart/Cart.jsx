@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Cart.css";
 import FoodItemCard from "../../components/FoodItem_card/FoodItem_card";
-import { getProductApi, postCartApi, postOrderApi } from "../../util/api";
+import {
+  createMomoPaymentApi,
+  getProductApi,
+  postCartApi,
+  postOrderApi,
+} from "../../util/api";
 
 const Cart = () => {
   // const [cart, setCart] = useState([]);
@@ -111,27 +116,51 @@ const Cart = () => {
   const handleCheckout = async () => {
     try {
       const orderData = {
-        staff_id: "exampleStaffId",
+        staff_id: "exampleStaffId", // Thay thế bằng ID thực tế từ hệ thống đăng nhập
         items: cart.map((item) => ({
           productId: item.id,
           quantity: item.quantity,
           price: item.price,
         })),
-        totalItems: cart.length,
+        totalItems: cart.reduce((acc, item) => acc + item.quantity, 0),
         totalPrice: total,
       };
 
-      const res = await postOrderApi();
+      // Gọi API để tạo đơn hàng
+      const res = await postOrderApi(orderData);
       if (res && res.data) {
         alert("Thanh toán thành công!");
+        console.log("Thông tin đơn hàng:", res.data.order);
         setCart([]); // Reset giỏ hàng sau khi thanh toán
       }
     } catch (error) {
       console.error("Lỗi khi thanh toán:", error);
+      alert("Đã xảy ra lỗi khi thanh toán. Vui lòng thử lại.");
     }
   };
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  // const handleMomoPayment = async () => {
+  //   try {
+  //     const paymentData = {
+  //       amount: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
+  //       items: cart.map((item) => ({
+  //         productId: item.id,
+  //         quantity: item.quantity,
+  //         price: item.price,
+  //       })),
+  //     };
+  //     const res = await createMomoPaymentApi(paymentData);
+  //     if (res && res.data && res.data.payUrl) {
+  //       window.location.href = res.data.payUrl; // Redirect đến trang thanh toán MoMo
+  //     } else {
+  //       alert("Không thể tạo thanh toán MoMo");
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi thanh toán MoMo:", error);
+  //   }
+  // };
+
   // return (
   //   <div className="app-container">
   //     {/* Danh sách món */}
@@ -184,7 +213,7 @@ const Cart = () => {
   //   </div>
   // );
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ padding: "20px" }}>
       <div className="food-display">
         <div className="food-display-list">
           {dataSource.map((item) => (
